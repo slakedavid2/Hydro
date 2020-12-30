@@ -97,7 +97,7 @@ def process_file(file_name,username):#function to process the wordlist files
     send_request_parallel(user_pass)
 
 def send_request_parallel(user_pass):#function which maps the previous basic functions to multiple processes
-
+    final=''
     with concurrent.futures.ProcessPoolExecutor(num_threads) as executor:#Process Pool Executor uses Multi-Processing
         for i in executor.map(send_request,user_pass):#map the user_pass list to the send_request function then iterate through it to print outputs
             print(i,end='\r\r')
@@ -107,13 +107,12 @@ def send_request_parallel(user_pass):#function which maps the previous basic fun
             elif i[0] and fail_succ=='S':
                 final=i
                 break
-
+    if final=="":
+        print("Not Found :(")
     if final[0] and fail_succ=='S':
         print("Found User:Pass = ",final[1])
     elif not(final[0]) and fail_succ=='F':
         print("Found User:Pass =  ",final[1])
-    else:
-        print("Not Found :(")
 
 start=time.time()
 process_file(file_name,username)
