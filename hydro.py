@@ -109,7 +109,7 @@ def send_request_parallel(user_pass):#function which maps the previous basic fun
                 break
     if final=="":
         print("Not Found :(")
-    if final[0] and fail_succ=='S':
+    elif final[0] and fail_succ=='S':
         print("Found User:Pass = ",final[1])
     elif not(final[0]) and fail_succ=='F':
         print("Found User:Pass =  ",final[1])
