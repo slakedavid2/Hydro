@@ -100,7 +100,7 @@ def send_request_parallel(user_pass):#function which maps the previous basic fun
     final=''
     with concurrent.futures.ProcessPoolExecutor(num_threads) as executor:#Process Pool Executor uses Multi-Processing
         for i in executor.map(send_request,user_pass):#map the user_pass list to the send_request function then iterate through it to print outputs
-            print(i,end='\r\r')
+            print(i)
             if not(i[0]) and fail_succ=='F':
                 final=i
                 break
@@ -108,11 +108,11 @@ def send_request_parallel(user_pass):#function which maps the previous basic fun
                 final=i
                 break
     if final=="":
-        print("Not Found :(")
+        print("\nNot Found :(")
     elif final[0] and fail_succ=='S':
-        print("Found User:Pass = ",final[1])
+        print("\nFound User:Pass = ",final[1])
     elif not(final[0]) and fail_succ=='F':
-        print("Found User:Pass =  ",final[1])
+        print("\nFound User:Pass =  ",final[1])
 
 start=time.time()
 process_file(file_name,username)
